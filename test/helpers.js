@@ -66,7 +66,7 @@ function cleanTables(db) {
       .raw(
         `TRUNCATE
         admins,
-        posts,
+        posts
       `
       )
       .then(() =>
@@ -83,7 +83,7 @@ function cleanTables(db) {
 function seedAdmins(db, admins) {
   const preppedadmins = admins.map((admin) => ({
     ...admin,
-    password: bcrypt.hashSync(user.password, 1),
+    password: bcrypt.hashSync(admin.password, 1),
   }));
   return db
     .into("admins")
@@ -95,11 +95,10 @@ function seedAdmins(db, admins) {
     );
 }
 
-function seedPosts(db, users, likes, posts, adminPosts) {
+function seedPosts(db, admins, posts) {
   return db.transaction(async (trx) => {
-    await seedUsers(trx, users);
+    await seedAdmins(trx, admins);
     await trx.into("posts").insert(posts);
-    await seedLikes(trx, likes);
 
     await trx.raw(`SELECT setval('posts_id_seq', ?)`, [
       posts[posts.length - 1].id,

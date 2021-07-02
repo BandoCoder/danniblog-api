@@ -22,3 +22,5 @@ const PostsService = {
     return db.from("posts").where({ id }).delete();
   },
 };
+
+module.exports = PostsService;
