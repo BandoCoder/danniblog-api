@@ -8,6 +8,11 @@ function makeAdminArray() {
       admin_name: "test-user-1",
       password: "Password123!",
     },
+    {
+      id: 3,
+      admin_name: "test-user-3",
+      password: "I am not a password",
+    },
   ];
 }
 
