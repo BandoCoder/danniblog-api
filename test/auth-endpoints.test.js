@@ -107,7 +107,7 @@ describe("Auth Endpoints", function () {
         }
       );
       return supertest(app)
-        .post("/api/auth/refresh")
+        .put("/api/auth/refresh")
         .set("Authorization", helpers.makeAuthHeader(testAdmin))
         .expect(200, {
           authToken: expectedToken,
