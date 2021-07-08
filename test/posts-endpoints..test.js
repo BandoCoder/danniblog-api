@@ -175,12 +175,12 @@ describe("Posts Endpoints", () => {
     beforeEach(() => helpers.seedPosts(db, testAdmins, testPosts));
     it("Responds 401 'UNAUTHORIZED DELETE REQUEST'", () => {
       return supertest(app).delete("/api/posts/1").expect(401, {
-        error: "UNAUTHORZED DELETE REQUEST",
+        error: "NOT AUTHORIZED",
       });
     });
     it("Responds 204, no content", () => {
       return supertest(app)
-        .delete("/api/posts/:id")
+        .delete("/api/posts/1")
         .set("Authorization", helpers.makeAuthHeader(testAdmin))
         .expect(204);
     });

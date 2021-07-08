@@ -15,6 +15,9 @@ const PostsService = {
       .orderBy("date_created", "desc")
       .limit(50);
   },
+  getPostById(db, id) {
+    return db("posts").select("*").where({ id }).first();
+  },
   updatePost(db, id, updatedPost) {
     return db("posts").where({ id }).update(updatedPost);
   },
