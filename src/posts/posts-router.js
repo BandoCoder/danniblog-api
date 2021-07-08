@@ -76,7 +76,6 @@ postsRouter
   });
 
 async function checkPostExists(req, res, next) {
-  //Knex instance
   let db = req.app.get("db");
 
   try {
